@@ -1,0 +1,44 @@
+<!-- test.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Page</title>
+    <script type="text/javascript" src="./static/script/jquery.min.js"> </script>
+</head>
+<body>
+
+    <div id="data-container">
+        <!-- 這裡將顯示 Ajax 請求返回的數據 -->
+    </div>
+    
+    <script>
+    function fetchData() {
+        // 使用 jQuery 的 Ajax 函數來發送 GET 請求
+        $.ajax({
+            url: '/data',  // 發送請求的路由
+            type: 'GET',
+            success: function(data) {
+                // 請求成功時執行的函數
+                // 將數據插入到 data-container 元素中
+                $('#data-container').html(JSON.stringify(data, null, 2));
+            },
+            error: function(error) {
+                // 請求失敗時執行的函數
+                console.error('Ajax request failed:', error);
+            }
+        });
+    }
+    
+    // 初始載入時獲取數據
+    fetchData();
+    
+    // 每隔五秒刷新一次數據
+    setInterval(fetchData, 1000);
+    
+    </script>
+    
+    </body>
+    </html>
