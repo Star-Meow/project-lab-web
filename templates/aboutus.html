@@ -19,13 +19,10 @@
             <a href="#" class="logo">
                 <img id="image_logo" src="">
             </a>
-            <div class = "user_div">
-                <label id = 'username'>歡迎!<label>
-            </div>
             <nav class="main_nav">
                 <a href="http://127.0.0.1:5000" >首頁</a>
-                <a href="http://127.0.0.1:8000/setting">x</a>
-                <a href="http://127.0.0.1:8000/logout">y</a>
+                <a href="http://127.0.0.1:5000/field">場地介紹</a>
+                <a href="http://127.0.0.1:5000/">專題資訊</a>
             </nav>
         </div>
     </header>
@@ -36,6 +33,7 @@
 
             <div class="abs_text">
                 <h2>簡宇健</h2>
+                <img id = "made_icon1" src="/static/image/madeby_ json.jpg">
                 <p>負責項目：AI辨識，包含球員位置辨識，背號辨識，資料傳輸以及串接。</p>
             </div>
         </div>
@@ -43,30 +41,33 @@
 
             <div class="abs_text">
                 <h2>曾俊杰</h2>
+                <img id = "made_icon2" src="/static/image/madeby_zeng.jpg">
                 <p>負責項目：圖像串流，網頁CSS、JS以及資料傳輸的python串接。</p>
             </div>
         </div>
     </div>
     <!-- 新增東西的地方的尾 -->
     <div class="main_footer">
-        <div class="footer_item">
-            <h4>相關訊息</h4>
-            <nav>
-                <a href="http://127.0.0.1:5000/about">關於我們</a>
-            </nav>
+        <div class="footer_container">
+            <div class="footer_item">
+                <h4>相關訊息</h4>
+                <nav>
+                    <a href="http://127.0.0.1:5000/about">關於我們</a>
+                </nav>
+            </div>
+            <div class="footer_item">
+                <h4>場地介紹</h4>
+                <nav>
+                    <a href="http://127.0.0.1:5000/field">場地介紹</a>
+                </nav>
+            </div>
         </div>
-        <div class="footer_item">
-            <h4>場地介紹</h4>
-            <nav>
-                <a href="http://127.0.0.1:5000/field">場地介紹</a>
-            </nav>
-        </div>
-    </div>
-    </div>
+
         <div class="made_by">
             <p>© 2023 球員辨識畢專。亞洲大學資工系。</p>
             <p>Made by Jason Jian & Kevin Zeng & Peter Cheng</p>
         </div>
+    </div>
     </div>
     
 </body>

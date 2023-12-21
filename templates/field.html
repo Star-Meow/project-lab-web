@@ -18,12 +18,10 @@
             <a href="#" class="logo">
                 <img id="image_logo" src="">
             </a>
-            <div class = "user_div">
-                <label id = 'username'>歡迎!<label>
-            </div>
+
             <nav class="main_nav">
                 <a href="http://127.0.0.1:5000" >首頁</a>
-                <a href="http://127.0.0.1:5000">場地介紹</a>
+                <a href="http://127.0.0.1:5000/field">場地介紹</a>
                 <a href="http://127.0.0.1:5000/">專題資訊</a>
             </nav>
         </div>
@@ -31,7 +29,7 @@
 
     <!-- 新增東西的地方的頭 -->
     <div class="abu_container">
-        <div class="field"><img src="/static/fieldimg/field_Org.png" ></div>
+        <div class="field" id = "fieldinfo"><img src="/static/fieldimg/field_01.png" ></div>
         </div>
     </div>
     <!-- 新增東西的地方的尾 -->
@@ -55,7 +53,32 @@
             <p>Made by Jason Jian & Kevin Zeng & Peter Cheng</p>
         </div>
     </div>
+    <script>
+
+    function updateinfo() {
+        $.ajax({
+            url: "/data",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                field(data.pic_ct,"fieldinfo")
+                
+            },
+            error: function(error) {
+                console.error('Ajax request failed:', error);
+            }
+        });
+    }
+
     
+    
+    function field(imageId,field){
+        var Element = document.getElementById(field);
+            Element.src = "/static/fieldimg/field_0"+ imageId+".png" 
+        }
+    
+    setInterval(updateinfo, 1000);
+</script>
 </body>
 
 

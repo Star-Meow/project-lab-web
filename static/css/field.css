@@ -39,7 +39,7 @@ body {
 .main_header .container {
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 35px;
     max-width: 1920px;
     margin: auto;
 }
