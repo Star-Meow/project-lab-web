@@ -26,8 +26,20 @@
     <div id="main_c">
       <div class="abu_container">
         <div class="field">
-          <img id="fieldinfo" src="/static/fieldimg/field_01.png" />>
+          <img id="fieldinfo" src="/static/fieldimg/field_01.png" />
+          <div id="text_title">
+            <h1>場域完整場地及相關設備</h1>
+
+            <p>
+              右方圖片為場域完整場地、攝影機分布以及攝影機照射範圍。<br />
+
+              此場域內，總共擁有六支攝影機，分別分布在左右兩側各有三隻攝影機對場地進行攝影。<br />
+
+              因本次專題僅辨識左半場場地，只使用畫面範圍覆蓋左半場之三隻攝影機。
+            </p>
+          </div>
         </div>
+
         <div class="rightbar">
           <ul>
             <li class="pic01"><a>完整場地圖</a></li>
@@ -50,3 +62,49 @@
     </div>
   </body>
 </html>
+
+<script>
+  $(document).ready(function () {
+    var defaultText = "Your Default Text";
+    var defaultImage = "/static/fieldimg/field_01.png";
+
+    $("#fieldinfo").attr("src", defaultImage);
+    $("#imageText").text(defaultText);
+
+    $(".rightbar li").click(function () {
+      var buttonText = $(this).text();
+      var imagePath = "/static/fieldimg/";
+      switch (buttonText) {
+        case "完整場地圖":
+          $("#fieldinfo").attr("src", imagePath + "field_01.png");
+          $("#text_title h1").html("場域完整場地及相關設備");
+          $("#text_title p").html(
+            "右方圖片為場域完整場地、攝影機分布以及攝影機照射範圍。<br>此場域內，總共擁有六支攝影機，分別分布在左右兩側各有三隻攝影機對場地進行攝影。<br>因本次專題僅辨識左半場場地，只使用畫面範圍覆蓋左半場之三隻攝影機。"
+          );
+          break;
+        case "一號攝影機":
+          $("#fieldinfo").attr("src", imagePath + "field_02.png");
+          $("#text_title h1").text("一號攝影機之拍攝範圍");
+          $("#text_title p").text("右方圖片為一號攝影機之照射範圍。");
+          break;
+        case "四號攝影機":
+          $("#fieldinfo").attr("src", imagePath + "field_03.png");
+          $("#text_title h1").text("四號攝影機之拍攝範圍");
+          $("#text_title p").text("右方圖片為四號攝影機之照射範圍。");
+          break;
+        case "五號攝影機":
+          $("#fieldinfo").attr("src", imagePath + "field_04.png");
+          $("#text_title h1").text("五號攝影機之拍攝範圍");
+          $("#text_title p").text("右方圖片為六號攝影機之照射範圍。");
+          break;
+        case "所使用攝影機":
+          $("#fieldinfo").attr("src", imagePath + "field_05.png");
+          $("#text_title h1").text("本專題使用之攝影機");
+          $("#text_title p").text(
+            "右方圖片為此專題使用之三隻攝影機，以及其拍攝範圍。"
+          );
+          break;
+      }
+    });
+  });
+</script>

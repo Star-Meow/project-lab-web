@@ -57,15 +57,6 @@ def data2():
     print(frame_counter)
     return jsonify(ans)
 
-@app.route('/dataf')
-def datafield():
-    global pic_ct
-    pic_ct += 1
-    if pic_ct > 5:
-        pic_ct = 1
-    fieldans = {'pic_ct': pic_ct}
-    print(fieldans)
-    return jsonify(fieldans)
 
 @app.route('/check')  #確認ajax有沒有抓到/data的json
 def check():

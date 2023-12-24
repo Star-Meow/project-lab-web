@@ -33,6 +33,30 @@ body {
 .field {
     border: 1px solid #534b52;
     width: 150%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+#fieldinfo {
+    margin-right: 10px;
+}
+
+h1 {
+    color: var(--white);
+    font-size: 42px;
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+#text_title p {
+    color: var(--white);
+    margin-top: 50px;
+    font-size: 32px;
+    max-width: 520px;
+    text-align: left;
+    justify-content: center;
 }
 
 
@@ -89,7 +113,7 @@ body {
     content: "";
     position: absolute;
     left: 50%;
-    right: 50%;
+    right: 20%;
     bottom: -5px;
     height: 0;
     border: 1px solid #fff;
@@ -125,15 +149,6 @@ body {
 
 :root {
     --white: rgb(255, 255, 255)
-}
-
-p,
-h1,
-h2 {
-    color: var(--white);
-    font-weight: 900;
-    margin-left: 5px;
-    font-size: 1.3em;
 }
 
 
@@ -261,6 +276,7 @@ img:hover {
 .rightbar {
     min-width: 5rem;
     position: fixed;
+    top: 30%;
     right: 0;
     padding: 0px;
 }
@@ -287,30 +303,4 @@ img:hover {
         opacity: 1;
         transform: translateY(0px) translateX(0);
     }
-}
-
-
-/* 暫停音樂 */
-
-.pause {
-    position: fixed;
-    top: 0;
-    right: 0;
-    background-color: yellow;
-    /* Green */
-    border: none;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    transition-duration: 0.3s;
-    font-weight: 900;
-}
-
-.pause:hover {
-    background-color: #000;
-    color: white;
-    padding: 15px 64px;
 }
