@@ -1,22 +1,22 @@
 import cv2
-
 videoFile = "cam04.mp4"
 outputFile = 'cam04_'
 vc = cv2.VideoCapture(videoFile)
 c = 1
-start_frame = 15  # 从第28帧开始保存图片
 if vc.isOpened():
     rval, frame = vc.read()
 else:
     print('openerror!')
     rval = False
 
-timeF = 1  # 视频帧计数间隔次数
+timeF = 1  #視頻幀計數間隔次數
 while rval:
+    print(1)
+    #print(c)
     rval, frame = vc.read()
-    if c >= start_frame:
-        img_number = c - start_frame + 1
-        cv2.imwrite(outputFile + "{:02d}.jpg".format(img_number), frame)
+    if c % timeF == 0:
+        print(2)
+        cv2.imwrite(outputFile + str(int(c / timeF)) + '.jpg', frame)
     c += 1
     cv2.waitKey(1)
 vc.release()

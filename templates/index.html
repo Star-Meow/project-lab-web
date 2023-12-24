@@ -2,80 +2,67 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>球員位置辨識及其位置顯示圖</title>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <script src="/static/script/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
 </head>
+
 <body>
-    <header class="main_header">       
+    <header class="main_header">
         <div class="container">
             <a href="#" class="logo">
-                <img id="image_logo" src="">
+                <img id="image_logo" src="" />
             </a>
             <nav class="main_nav">
-                <a href="http://127.0.0.1:5000" >首頁</a>
+                <a href="http://127.0.0.1:5000">首頁</a>
                 <a href="http://127.0.0.1:5000/field">場地介紹</a>
-                <a href="http://127.0.0.1:5000/">專題資訊</a>
+                <a href="http://127.0.0.1:5000/">專題成果</a>
+                <a href="http://127.0.0.1:5000/">關於我們</a>
             </nav>
         </div>
     </header>
     <div class="main_c">
         <div class="flex_box1">
-            <div><img class="cam_video" id="cam01"></div>
-            <div><img class="cam_video" id="cam03"></div>
-            <div><img class="cam_video" id="cam02"></div>
-
+            <div><img class="cam_video" id="cam01" /></div>
+            <div><img class="cam_video" id="cam04" /></div>
+            <div><img class="cam_video" id="cam06" /></div>
         </div>
         <div class="flex_box2">
-            <img src="/static/image/fieldhhalf.png"  >
-        </div>
-        <div class="flex_box3">
-            <div><img class="cam_video" id="cam04"></div>
-            <div><img class="cam_video" id="cam06"></div>
-            <div><img class="cam_video" id="cam05"></div>
+            <img id="flex_box2" src="/static/image/fieldhhalf.png" />
         </div>
     </div>
-        <!-- 使用不同的 id 來標識不同的玩家圖像 -->
-    <img class="playericon" id="playerImage1" alt="Player1 Icon" >
-    <img class="playericon" id="playerImage2" alt="Player2 Icon" >
-    <img class="playericon" id="playerImage3" alt="Player3 Icon" >
-    <img class="playericon" id="playerImage4" alt="Player4 Icon" >
-    <img class="playericon" id="playerImage5" alt="Player5 Icon" >
-    <img class="playericon" id="playerImage6" alt="Player6 Icon" >
-    <img class="playericon" id="playerImage7" alt="Player7 Icon" >
-    <img class="playericon" id="playerImage8" alt="Player8 Icon" >
-    <img class="playericon" id="playerImage9" alt="Player9 Icon" >
-    <img class="playericon" id="playerImage10" alt="Player10 Icon" >
+    <img class="numicon" id="i01" alt="01 Icon" />
+    <img class="numicon" id="i04" alt="04 Icon" />
+    <img class="numicon" id="i06" alt="06 Icon" />
+    <img class="camicon" id="c01" alt="01 Icon" />
+    <img class="camicon" id="c04" alt="04 Icon" />
+    <img class="camicon" id="c06" alt="06 Icon" />
+    <img class="playericon" id="playerImage1" alt="Player1 Icon" />
+    <img class="playericon" id="playerImage2" alt="Player2 Icon" />
+    <img class="playericon" id="playerImage3" alt="Player3 Icon" />
+    <img class="playericon" id="playerImage4" alt="Player4 Icon" />
+    <img class="playericon" id="playerImage5" alt="Player5 Icon" />
+    <img class="playericon" id="playerImage6" alt="Player6 Icon" />
+    <img class="playericon" id="playerImage7" alt="Player7 Icon" />
+    <img class="playericon" id="playerImage8" alt="Player8 Icon" />
+    <img class="playericon" id="playerImage9" alt="Player9 Icon" />
+    <img class="playericon" id="playerImage10" alt="Player10 Icon" />
 
     <!-- 新增東西的地方的尾 -->
     <div class="main_footer">
-        <div class="footer_container">
-            <div class="footer_item">
-                <h4>相關訊息</h4>
-                <nav>
-                    <a href="http://127.0.0.1:5000/about">關於我們</a>
-                </nav>
-            </div>
-            <div class="footer_item">
-                <h4>場地介紹</h4>
-                <nav>
-                    <a href="http://127.0.0.1:5000/field">場地介紹</a>
-                </nav>
-            </div>
-        </div>
+        <div class="footer_container"></div>
 
         <div class="made_by">
             <p>© 2023 球員辨識畢專。亞洲大學資工系。</p>
-            <p>Made by 簡宇健 &  曾俊杰 </p>
+            <p>Made by 簡宇健 & 曾俊杰</p>
         </div>
     </div>
-    </div>
-    
-    <script>
 
+    <script>
         function updatePlayerPosition() {
             $.ajax({
                 url: "/data2",
@@ -88,62 +75,112 @@
                                 number: data.number[i],
                                 x_coordinate: data.x_coor[i],
                                 y_coordinate: data.y_coor[i],
-                                has_ball : data.has_ball[i],
-                                frame : data.frame[i]
+                                has_ball: data.has_ball[i],
+                                frame: data.frame[i],
+                                x_lap: 0,
+                                y_lap: 0,
                             };
 
-                            handlePlayerPosition(player, 'playerImage'+data.number[i]);
-                            cam_video(player,"cam01","01");
-                            cam_error("cam02");
-                            cam_error("cam03");
-                            cam_video(player,"cam04","04");
-                            cam_error("cam05");
-                            cam_video(player,"cam06","06");
+                            handlePlayerPosition(player, "playerImage" + data.number[i]);
                         }
+                        cam_video(player, "cam01", "01");
+                        cam_video(player, "cam04", "04");
+                        cam_video(player, "cam06", "06");
+                        cam_icon("c01", "01");
+                        cam_icon("c04", "04");
+                        cam_icon("c06", "06");
+                        num_icon("i01", "01");
+                        num_icon("i04", "04");
+                        num_icon("i06", "06");
                     }
                 },
                 error: function(error) {
-                    console.error('Ajax request failed:', error);
-                }
+                    console.error("Ajax request failed:", error);
+                },
             });
         }
 
-
-        function handlePlayerPosition(player, imageId) {
-            var playerImage = document.getElementById(imageId);
-            
+        function handlePlayerPosition(player, data) {
+            for (var j = 0; j < player.length; j++) {
+                if (i !== j) {
+                    if (
+                        player[i].x_coordinate === player[j].x_coordinate &&
+                        player[i].y_coordinate === player[j].y_coordinate
+                    ) {
+                        if (player[i].number > player[j].number) {
+                            player[i].x_lap += 30;
+                        } else {
+                            player[j].x_lap += 30;
+                        }
+                    }
+                }
+            }
+            var playerImage = document.getElementById(data);
             var imagePath = "/static/image/number" + player.number;
+
             if (player.has_ball === 1) {
                 imagePath += "_hasball.png";
             } else {
                 imagePath += ".png";
             }
-        
+
             playerImage.src = imagePath;
-            playerImage.style.top = (225 + (player.y_coordinate * 152)) + "px";
-            /*72 + 144x*/
-            /*67 + 134x*/
-            playerImage.style.left = (717 + (player.x_coordinate * 134)) + "px";
+            playerImage.style.left =
+                ($("#flex_box2").offset().left + 45 + player.x_coordinate * 134 + player.x_lap) + "px";
+            playerImage.style.top =
+                ($("#flex_box2").offset().top + 30 + player.y_coordinate * 150) + "px";
+            /*72 + 144x, 152*/
+            /*67 + 134x, 134*/
+
         }
-        
-        function cam_error(imageId){
+
+        function cam_icon(imageId, id) {
             var camElement = document.getElementById(imageId);
-                camElement.src = "/static/image/lost.png"
+            camElement.src = "/static/image/" + id + "cam.png";
+            var offsetTop = $("#flex_box2").offset().top;
+            var offsetLeft = $("#flex_box2").offset().left;
+            if (id === "01") {
+                camElement.style.top = offsetTop - 70 + "px";
+                camElement.style.left = offsetLeft - 40 + "px";
+            } else if (id === "04") {
+                camElement.style.top = offsetTop - 70 + "px";
+                camElement.style.left = offsetLeft + 900 + "px";
+            } else if (id === "06") {
+                camElement.style.top = offsetTop + 440 + "px";
+                camElement.style.left = offsetLeft + 900 + "px";
             }
+        }
+
+        function num_icon(imageId, id) {
+            var camElement = document.getElementById(imageId);
+            camElement.src = "/static/image/" + id + "icon.png";
+
+            if (id === "01") {
+                camElement.style.top = $("#cam01").offset().top - 20 + "px";
+                camElement.style.left = $("#cam01").offset().left - 70 + "px";
+            } else if (id === "04") {
+                camElement.style.top = $("#cam04").offset().top - 20 + "px";
+                camElement.style.left = $("#cam04").offset().left - 70 + "px";
+            } else if (id === "06") {
+                camElement.style.top = $("#cam06").offset().top - 20 + "px";
+                camElement.style.left = $("#cam06").offset().left - 70 + "px";
+            }
+        }
 
         function cam_video(player, imageId, cam) {
             var camElement = document.getElementById(imageId);
             if (player.frame < 10) {
-                camElement.src = "/static/" + cam + "cam/cam" + cam + "_0" + player.frame + ".jpg";
+                camElement.src =
+                    "/static/" + cam + "cam/cam" + cam + "_0" + player.frame + ".jpg";
             }
             if (player.frame >= 10) {
-                camElement.src = "/static/" + cam + "cam/cam" + cam + "_" + player.frame + ".jpg";
+                camElement.src =
+                    "/static/" + cam + "cam/cam" + cam + "_" + player.frame + ".jpg";
             }
         }
 
-
-        
         setInterval(updatePlayerPosition, 800);
     </script>
 </body>
+
 </html>

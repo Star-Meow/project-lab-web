@@ -8,14 +8,20 @@ app = Flask(__name__)
 
 frame_counter = 0
 field_ct = 0
+pic_ct = 0
 data_cache = None
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+@app.route('/result')
+def result():
+    return render_template('result.html')
+
 @app.route('/field')
 def field():
+
     return render_template('field.html')
 
 @app.route('/info')
@@ -43,7 +49,7 @@ def data():
 def data2():
     global frame_counter
     frame_counter += 1
-    if frame_counter > 296:
+    if frame_counter > 294:
         frame_counter = 0
     data = fakedata(frame_counter)
     ans = {'number': data[0], "has_ball": data[1], "x_coor": data[2],
@@ -51,7 +57,14 @@ def data2():
     print(frame_counter)
     return jsonify(ans)
 
-
+@app.route('/dataf')
+def datafield():
+    global pic_ct
+    pic_ct += 1
+    if pic_ct > 6:
+        pic_ct = 0
+    fieldans = {'pic_ct': pic_ct}
+    return jsonify(fieldans)
 
 @app.route('/check')  #確認ajax有沒有抓到/data的json
 def check():
