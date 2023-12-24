@@ -2,17 +2,15 @@
 <title>場地圖</title>
 
 <html>
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>場地介紹</title>
     <script src="/static/script/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/field.css" />
   </head>
 
-
-<body>
+  <body>
     <header class="main_header">
       <div class="container">
         <nav class="main_nav">
@@ -25,43 +23,30 @@
     </header>
 
     <!-- 新增東西的地方的頭 -->
-    <div class="abu_container">
-        <div class="field" id = "fieldinfo"><img src="/static/fieldimg/field_01.png" ></div>
+    <div id="main_c">
+      <div class="abu_container">
+        <div class="field">
+          <img id="fieldinfo" src="/static/fieldimg/field_01.png" />>
         </div>
+        <div class="rightbar">
+          <ul>
+            <li class="pic01"><a>完整場地圖</a></li>
+            <li class="pic02"><a>一號攝影機</a></li>
+            <li class="pic03"><a>四號攝影機</a></li>
+            <li class="pic04"><a>五號攝影機</a></li>
+            <li class="pic05"><a>所使用攝影機</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <!-- 新增東西的地方的尾 -->
     <div class="main_footer">
-        <div class="footer_container"></div>
+      <div class="footer_container"></div>
 
-        <div class="made_by">
-            <p>© 2023 球員辨識畢專。亞洲大學資工系。</p>
-            <p>Made by 簡宇健 & 曾俊杰</p>
-        </div>
+      <div class="made_by">
+        <p>© 2023 球員辨識畢專。亞洲大學資工系。</p>
+        <p>Made by 簡宇健 & 曾俊杰</p>
+      </div>
     </div>
-
-<script>
-    function updateinfo() {
-        $.ajax({
-            success: function(data) {
-                field(data.pic_ct,"fieldinfo")
-                
-            },
-            error: function(error) {
-                console.error('Ajax request failed:', error);
-            }
-        });
-    }
-
-    
-    
-    function field(imageId,field){
-        var Element = document.getElementById(field);
-            Element.src = "/static/fieldimg/field_0"+ imageId+".png" 
-        }
-    
-    setInterval(updateinfo, 1000);
-</script>
-</body>
-
-
+  </body>
 </html>

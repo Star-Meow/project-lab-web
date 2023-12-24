@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 frame_counter = 0
 field_ct = 0
-pic_ct = 0
+pic_ct = 1
 data_cache = None
 
 @app.route('/')
@@ -61,9 +61,10 @@ def data2():
 def datafield():
     global pic_ct
     pic_ct += 1
-    if pic_ct > 6:
-        pic_ct = 0
+    if pic_ct > 5:
+        pic_ct = 1
     fieldans = {'pic_ct': pic_ct}
+    print(fieldans)
     return jsonify(fieldans)
 
 @app.route('/check')  #確認ajax有沒有抓到/data的json

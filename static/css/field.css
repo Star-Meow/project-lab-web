@@ -1,4 +1,4 @@
-/* styles.css */
+/* Reset styles */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;900&display=swap');
 * {
@@ -15,13 +15,19 @@ body {
     background: #2d232e;
 }
 
-.abu_container {
-    width: 1200px;
+.main_c {
     display: flex;
-    margin: auto;
+    height: 1100px;
+    width: 1960px;
+    padding: 100px;
+    align-items: center;
+}
+
+.abu_container {
+    width: auto;
+    display: flex;
     padding: 50px;
     align-items: center;
-    justify-content: space-evenly;
 }
 
 .field {
@@ -30,10 +36,12 @@ body {
 }
 
 
-/*頁首*/
+/* 頁首 */
 
 .main_header {
     background-color: rgba(4, 5, 5, 0.363);
+    position: relative;
+    z-index: 2;
 }
 
 .main_header .container {
@@ -97,7 +105,7 @@ body {
 /* 頁尾 */
 
 .main_footer {
-    background-color: rgba(4, 5, 5, 0.363)
+    background-color: rgba(4, 5, 5, 0.363);
 }
 
 .main_footer .footer_container {
@@ -110,4 +118,199 @@ body {
     padding: 10px 0px;
     background-color: rgba(91, 94, 94, 0.363);
     color: #fff;
+}
+
+
+/* 測試 */
+
+:root {
+    --white: rgb(255, 255, 255)
+}
+
+p,
+h1,
+h2 {
+    color: var(--white);
+    font-weight: 900;
+    margin-left: 5px;
+    font-size: 1.3em;
+}
+
+
+/* 導覽列CSS */
+
+nav>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+nav>ul>li {
+    float: left;
+}
+
+
+/* 導覽列字體CSS */
+
+li a {
+    font-weight: 900;
+    transition: 0.5s;
+    background-color: #000;
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.rightbar>ul {
+    right: 0;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.rightbar li a {
+    font-weight: 900;
+    text-decoration: none;
+    border-bottom: #555 solid 1px;
+}
+
+.rightbar li a:hover {
+    background-color: #555;
+    color: white;
+    padding: 30px 30px;
+}
+
+a.active {
+    background-color: aqua;
+    color: #000;
+}
+
+.contbox:nth-child(1).active a,
+.contbox:nth-child(2).active a,
+.contbox:nth-child(3).active a,
+.contbox:nth-child(4).active a {
+    background-color: aqua;
+    color: #000;
+}
+
+.rightbar li.active {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.rightbar li:hover {
+    background-color: rgba(0, 0, 0, 0);
+    padding-bottom: 30px;
+}
+
+
+/* 固定位置使用 */
+
+.contian {
+    margin-top: 70px;
+    padding: 20px;
+    display: block;
+}
+
+.infos {
+    display: flex;
+    position: fixed;
+    width: 500px;
+    height: 480px;
+    flex-wrap: wrap;
+    margin-top: 70px;
+}
+
+
+/* 邊框樣式以及大小設定 */
+
+.mid {
+    position: relative;
+    left: 360px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    border-bottom: none;
+    border-top: none;
+    padding: 0px;
+    width: calc(100% - 600px);
+}
+
+img:hover {
+    transition: 0.3s;
+    transform: scale(110%);
+    z-index: 10;
+}
+
+
+/* 讓右邊的選單能被限制不然會飛走 */
+
+.contians {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+
+/* 右邊選單位置 */
+
+.rightbar {
+    min-width: 5rem;
+    position: fixed;
+    right: 0;
+    padding: 0px;
+}
+
+.frame {
+    display: none;
+    animation-name: frame;
+    z-index: index 0;
+    animation-duration: 0.5s;
+}
+
+.frame.active {
+    z-index: index 0;
+    display: block;
+    scroll-margin-top: 90px;
+}
+
+@keyframes frame {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px) translateX(-100);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px) translateX(0);
+    }
+}
+
+
+/* 暫停音樂 */
+
+.pause {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: yellow;
+    /* Green */
+    border: none;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.3s;
+    font-weight: 900;
+}
+
+.pause:hover {
+    background-color: #000;
+    color: white;
+    padding: 15px 64px;
 }
