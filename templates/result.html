@@ -69,6 +69,7 @@
           dataType: "json",
           success: function (data) {
             if (data && data.number && data.number.length > 0) {
+              var players = [];
               for (var i = 0; i < data.number.length; i++) {
                 var player = {
                   number: data.number[i],
@@ -79,18 +80,24 @@
                   x_lap: 0,
                   y_lap: 0,
                 };
-
-                handlePlayerPosition(player, "playerImage" + data.number[i]);
+                players.push(player);
+                //handlePlayerPosition(player, "playerImage" + data.number[i]);
               }
+              players = jack(players);
+              console.log(players.length);
+              for (var i = 0; i < players.length; i++) {
+                handlePlayerPosition(
+                  "playerImage" + players[i].number,
+                  players[i]
+                );
+              }
+
               cam_video(player, "cam01", "01");
+              cam_error("cam02");
+              cam_error("cam03");
               cam_video(player, "cam04", "04");
-              cam_video(player, "cam05", "05");
-              cam_icon("c01", "01");
-              cam_icon("c04", "04");
-              cam_icon("c05", "05");
-              num_icon("i01", "01");
-              num_icon("i04", "04");
-              num_icon("i05", "05");
+              cam_error("cam05");
+              cam_video(player, "cam06", "06");
             }
           },
           error: function (error) {
@@ -98,9 +105,21 @@
           },
         });
       }
-
-      function handlePlayerPosition(player, data) {
-        for (var j = 0; j < player.length; j++) {
+      function jack(players) {
+        for (var i = 0; i < players.length; i++) {
+          for (var j = i + 1; j < players.length; j++) {
+            if (
+              players[i].x_coordinate === players[j].x_coordinate &&
+              players[i].y_coordinate === players[j].y_coordinate
+            ) {
+              players[j].x_coordinate += 0.45;
+            }
+          }
+        }
+        return players;
+      }
+      function handlePlayerPosition(data, player) {
+        /*         for (var j = 0; j < player.number; j++) {
           if (i !== j) {
             if (
               player[i].x_coordinate === player[j].x_coordinate &&
@@ -113,8 +132,10 @@
               }
             }
           }
-        }
+        } */
+
         var playerImage = document.getElementById(data);
+
         var imagePath = "/static/image/number" + player.number;
 
         if (player.has_ball === 1) {
@@ -134,39 +155,12 @@
           $("#flex_box2").offset().top + 30 + player.y_coordinate * 150 + "px";
         /*72 + 144x, 152*/
         /*67 + 134x, 134*/
+        console.log(player.x_lap);
       }
 
-      function cam_icon(imageId, id) {
+      function cam_error(imageId) {
         var camElement = document.getElementById(imageId);
-        camElement.src = "/static/image/" + id + "cam.png";
-        var offsetTop = $("#flex_box2").offset().top;
-        var offsetLeft = $("#flex_box2").offset().left;
-        if (id === "01") {
-          camElement.style.top = offsetTop - 70 + "px";
-          camElement.style.left = offsetLeft - 40 + "px";
-        } else if (id === "04") {
-          camElement.style.top = offsetTop - 70 + "px";
-          camElement.style.left = offsetLeft + 900 + "px";
-        } else if (id === "05") {
-          camElement.style.top = offsetTop + 935 + "px";
-          camElement.style.left = offsetLeft + 920 + "px";
-        }
-      }
-
-      function num_icon(imageId, id) {
-        var camElement = document.getElementById(imageId);
-        camElement.src = "/static/image/" + id + "icon.png";
-
-        if (id === "01") {
-          camElement.style.top = $("#cam01").offset().top - 20 + "px";
-          camElement.style.left = $("#cam01").offset().left + 480 + "px";
-        } else if (id === "04") {
-          camElement.style.top = $("#cam04").offset().top - 20 + "px";
-          camElement.style.left = $("#cam04").offset().left + 480 + "px";
-        } else if (id === "05") {
-          camElement.style.top = $("#cam05").offset().top - 20 + "px";
-          camElement.style.left = $("#cam05").offset().left + 480 + "px";
-        }
+        camElement.src = "/static/image/lost.png";
       }
 
       function cam_video(player, imageId, cam) {
