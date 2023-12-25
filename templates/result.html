@@ -1,4 +1,4 @@
-<!-- index.html -->
+<!-- result.html -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,7 +17,7 @@
           <img id="image_logo" src="" />
         </a>
         <nav class="main_nav">
-          <a href="http://127.0.0.1:5000/index">首頁</a>
+          <a href="http://127.0.0.1:5000/info">首頁</a>
           <a href="http://127.0.0.1:5000/field">場地介紹</a>
           <a href="http://127.0.0.1:5000/result">專題成果</a>
           <a href="http://127.0.0.1:5000/about">關於我們</a>
@@ -69,7 +69,7 @@
           dataType: "json",
           success: function (data) {
             if (data && data.number && data.number.length > 0) {
-              var players = [];
+				var players = [];
               for (var i = 0; i < data.number.length; i++) {
                 var player = {
                   number: data.number[i],
@@ -80,24 +80,22 @@
                   x_lap: 0,
                   y_lap: 0,
                 };
-                players.push(player);
-                //handlePlayerPosition(player, "playerImage" + data.number[i]);
-              }
+              players.push(player);
+            }
               players = jack(players);
-              console.log(players.length);
-              for (var i = 0; i < players.length; i++) {
-                handlePlayerPosition(
-                  "playerImage" + players[i].number,
-                  players[i]
-                );
-              }
-
+              
+              for(var i=0;i<players.length;i++)
+			        {handlePlayerPosition("playerImage" + players[i].number,players[i]);}
+              
               cam_video(player, "cam01", "01");
-              cam_error("cam02");
-              cam_error("cam03");
               cam_video(player, "cam04", "04");
-              cam_error("cam05");
-              cam_video(player, "cam06", "06");
+              cam_video(player, "cam05", "05");
+              cam_icon("c01", "01");
+              cam_icon("c04", "04");
+              cam_icon("c05", "05");
+              num_icon("i01", "01");
+              num_icon("i04", "04");
+              num_icon("i05", "05");
             }
           },
           error: function (error) {
@@ -105,21 +103,27 @@
           },
         });
       }
-      function jack(players) {
-        for (var i = 0; i < players.length; i++) {
+        function jack(players) {
+          for (var i = 0; i < players.length; i++) {
           for (var j = i + 1; j < players.length; j++) {
             if (
-              players[i].x_coordinate === players[j].x_coordinate &&
-              players[i].y_coordinate === players[j].y_coordinate
+            players[i].x_coordinate === players[j].x_coordinate &&
+            players[i].y_coordinate === players[j].y_coordinate &&
+            players[i].y_coordinate + players[i].x_coordinate != 0
             ) {
-              players[j].x_coordinate += 0.45;
+            players[j].x_lap += 45;
             }
           }
         }
-        return players;
-      }
-      function handlePlayerPosition(data, player) {
-        /*         for (var j = 0; j < player.number; j++) {
+          
+          return players;
+        }
+      function handlePlayerPosition(data,player) {
+        var playerImage = document.getElementById(data);
+        var imagePath = "/static/image/number" + player.number;
+
+          
+        /*for (var j = 0; j < player.length; j++) {
           if (i !== j) {
             if (
               player[i].x_coordinate === player[j].x_coordinate &&
@@ -132,12 +136,10 @@
               }
             }
           }
-        } */
+        }*/
+        
 
-        var playerImage = document.getElementById(data);
-
-        var imagePath = "/static/image/number" + player.number;
-
+        console.log(player.frame,player.number,player.x_coordinate,player.y_coordinate)
         if (player.has_ball === 1) {
           imagePath += "_hasball.png";
         } else {
@@ -148,19 +150,46 @@
         playerImage.style.left =
           $("#flex_box2").offset().left +
           45 +
-          player.x_coordinate * 134 +
+          (player.x_coordinate-1) * 134 +
           player.x_lap +
           "px";
         playerImage.style.top =
-          $("#flex_box2").offset().top + 30 + player.y_coordinate * 150 + "px";
+          $("#flex_box2").offset().top + 30 + (player.y_coordinate -1) * 150 + "px";
         /*72 + 144x, 152*/
         /*67 + 134x, 134*/
-        console.log(player.x_lap);
       }
 
-      function cam_error(imageId) {
+      function cam_icon(imageId, id) {
         var camElement = document.getElementById(imageId);
-        camElement.src = "/static/image/lost.png";
+        camElement.src = "/static/image/" + id + "cam.png";
+        var offsetTop = $("#flex_box2").offset().top;
+        var offsetLeft = $("#flex_box2").offset().left;
+        if (id === "01") {
+          camElement.style.top = offsetTop - 70 + "px";
+          camElement.style.left = offsetLeft - 40 + "px";
+        } else if (id === "04") {
+          camElement.style.top = offsetTop - 70 + "px";
+          camElement.style.left = offsetLeft + 900 + "px";
+        } else if (id === "05") {
+          camElement.style.top = offsetTop + 935 + "px";
+          camElement.style.left = offsetLeft + 920 + "px";
+        }
+      }
+
+      function num_icon(imageId, id) {
+        var camElement = document.getElementById(imageId);
+        camElement.src = "/static/image/" + id + "icon.png";
+
+        if (id === "01") {
+          camElement.style.top = $("#cam01").offset().top - 20 + "px";
+          camElement.style.left = $("#cam01").offset().left + 480 + "px";
+        } else if (id === "04") {
+          camElement.style.top = $("#cam04").offset().top - 20 + "px";
+          camElement.style.left = $("#cam04").offset().left + 480 + "px";
+        } else if (id === "05") {
+          camElement.style.top = $("#cam05").offset().top - 20 + "px";
+          camElement.style.left = $("#cam05").offset().left + 480 + "px";
+        }
       }
 
       function cam_video(player, imageId, cam) {
@@ -175,7 +204,7 @@
         }
       }
 
-      setInterval(updatePlayerPosition, 800);
+      setInterval(updatePlayerPosition, 500);
     </script>
   </body>
 </html>

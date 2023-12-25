@@ -1,0 +1,308 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Noto Sans TC', sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    background: #2d232e;
+}
+
+.main_c {
+    display: flex;
+    height: 1100px;
+    width: 1960px;
+    padding: 100px;
+    align-items: center;
+}
+
+.abu_container {
+    width: auto;
+    display: flex;
+    padding: 50px;
+    align-items: center;
+}
+
+.field {
+    border: 1px solid #534b52;
+    width: 100%;
+    height: 1080px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    
+}
+
+#fieldinfo {
+    margin-right: 10px;
+
+}
+
+h1 {
+    color: var(--white);
+    font-size: 42px;
+    text-align: center;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+#text_title p {
+    color: var(--white);
+    margin-top: 50px;
+    font-size: 32px;
+    max-width: 520px;
+    text-align: left;
+    justify-content: center;
+}
+
+
+/* 頁首 */
+
+.main_header {
+    background-color: rgba(4, 5, 5, 0.363);
+    position: relative;
+    z-index: 2;
+}
+
+.main_header .container {
+    display: flex;
+    align-items: center;
+    padding: 35px;
+    max-width: 1920px;
+    margin: auto;
+}
+
+.main_header .logo {
+    width: 100px;
+}
+
+.main_header .logo img {
+    width: 100%;
+    vertical-align: middle;
+}
+
+.main_header p {
+    color: #fff;
+    padding: 5px;
+    margin: 30px;
+}
+
+.main_header .main_nav {
+    display: flex;
+    margin: auto;
+}
+
+.main_header .main_nav a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 5em;
+    position: relative;
+    transform: translateY(0px);
+    transition: .5s;
+}
+
+.main_header .main_nav a:hover {
+    transform: translateY(-5px);
+}
+
+.main_header .main_nav a:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    right: 20%;
+    bottom: -5px;
+    height: 0;
+    border: 1px solid #fff;
+    transition: .5s;
+}
+
+.main_header .main_nav a:hover:after {
+    left: 0;
+    right: 0;
+}
+
+
+/* 頁尾 */
+
+.main_footer {
+    background-color: rgba(4, 5, 5, 0.363);
+}
+
+.main_footer .footer_container {
+    display: flex;
+    width: 1900px;
+}
+
+.made_by {
+    text-align: center;
+    padding: 10px 0px;
+    background-color: rgba(91, 94, 94, 0.363);
+    color: #fff;
+}
+
+
+/* 測試 */
+
+:root {
+    --white: rgb(255, 255, 255)
+}
+
+
+/* 導覽列CSS */
+
+nav>ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+nav>ul>li {
+    float: left;
+}
+
+
+/* 導覽列字體CSS */
+
+li a {
+    font-weight: 900;
+    transition: 0.5s;
+    background-color: #000;
+    display: block;
+    color: rgb(255, 255, 255);
+    padding: 15px 30px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.rightbar>ul {
+    right: 0;
+    padding: 0px;
+    list-style-type: none;
+}
+
+.rightbar li a {
+    font-weight: 900;
+    text-decoration: none;
+    border-bottom: #555 solid 1px;
+}
+
+.rightbar li a:hover {
+    background-color: #555;
+    color: white;
+    padding: 30px 30px;
+}
+
+a.active {
+    background-color: aqua;
+    color: #000;
+}
+
+.contbox:nth-child(1).active a,
+.contbox:nth-child(2).active a,
+.contbox:nth-child(3).active a,
+.contbox:nth-child(4).active a {
+    background-color: aqua;
+    color: #000;
+}
+
+.rightbar li.active {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.rightbar li:hover {
+    background-color: rgba(0, 0, 0, 0);
+    padding-bottom: 30px;
+}
+
+
+/* 固定位置使用 */
+
+.contian {
+    margin-top: 70px;
+    padding: 20px;
+    display: block;
+}
+
+.infos {
+    display: flex;
+    position: fixed;
+    width: 500px;
+    height: 480px;
+    flex-wrap: wrap;
+    margin-top: 70px;
+}
+
+
+/* 邊框樣式以及大小設定 */
+
+.mid {
+    position: relative;
+    left: 360px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    border-bottom: none;
+    border-top: none;
+    padding: 0px;
+    width: calc(100% - 600px);
+}
+
+img:hover {
+    transition: 0.3s;
+    transform: scale(110%);
+    z-index: 10;
+}
+
+
+/* 讓右邊的選單能被限制不然會飛走 */
+
+.contians {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+
+/* 右邊選單位置 */
+
+.rightbar {
+    min-width: 5rem;
+    position: fixed;
+    top: 30%;
+    right: 0;
+    padding: 0px;
+}
+
+.frame {
+    display: none;
+    animation-name: frame;
+    z-index: index 0;
+    animation-duration: 0.5s;
+}
+
+.frame.active {
+    z-index: index 0;
+    display: block;
+    scroll-margin-top: 90px;
+}
+
+@keyframes frame {
+    0% {
+        opacity: 0;
+        transform: translateY(-100px) translateX(-100);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px) translateX(0);
+    }
+}

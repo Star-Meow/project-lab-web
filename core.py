@@ -1,6 +1,7 @@
 # core.py
 from flask import Flask, render_template, jsonify,request
-from fakedata import test,fakedata
+from fakedata import *
+from demodata import *
 import sqlite3
 
 DB_File = "player_db.db"
@@ -13,7 +14,7 @@ data_cache = None
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('info.html')
 
 @app.route('/result')
 def result():
@@ -49,9 +50,9 @@ def data():
 def data2():
     global frame_counter
     frame_counter += 1
-    if frame_counter > 294:
+    if frame_counter > 80:
         frame_counter = 0
-    data = fakedata(frame_counter)
+    data = demo(frame_counter)
     ans = {'number': data[0], "has_ball": data[1], "x_coor": data[2],
            "y_coor": data[3], "frame": data[4]}
     print(frame_counter)
