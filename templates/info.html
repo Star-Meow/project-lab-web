@@ -31,7 +31,7 @@
             <h1>研究動機</h1>
 
             <p>
-              我們收到專業籃球隊對於分析軟體的需求，因而發想建構出一個系統。<br>
+              我們收到專業籃球隊對於分析軟體的需求，因而發想建構出一個系統。<br />
               此系統能夠協助教練以及其他賽事相關人員對於分析籃球場上球員的走位，背號追蹤，持球情況，做追蹤紀錄以及分析。
               並使其資料轉換為戰術路徑圖，以藉以確認球員在戰術練習中是否符合擬定的戰略。<br />
             </p>
@@ -68,9 +68,9 @@
 
     $("#fieldinfo").attr("src", defaultImage);
     $("#fieldinfo").css({
-            width: "1700px",
-            height: "600px" 
-          });
+      width: "1700px",
+      height: "600px",
+    });
     $("#imageText").text(defaultText);
 
     $(".rightbar li").click(function () {
@@ -81,7 +81,7 @@
           $("#fieldinfo").attr("src", imagePath + "action.png");
           $("#fieldinfo").css({
             width: "1700px",
-            height: "800px" 
+            height: "800px",
           });
           $("#text_title h1").html("研究動機");
           $("#text_title p").html(
@@ -91,36 +91,45 @@
         case "架構圖介紹":
           $("#fieldinfo").attr("src", imagePath + "frame.png");
           $("#fieldinfo").css({
-            width: "1600px",
-            height: "400px" 
+            width: "1425px",
+            height: "1096px",
           });
-          $("#text_title h1").text("架構圖介紹");
-          $("#text_title p").text("左圖為程式之架構圖，。");
+          $("#text_title h1").html("架構圖介紹");
+          $("#text_title p").html(
+            "首先1號、4號以及5號攝影機的串流影片，將會透過AI模型進行分析，得出位置、背號、持球、追蹤ID等結果，經由本校的物聯網平台傳送。<br>而後程式接收端接收到來自物聯網平台提供的AI辨識結果，再將其轉化成戰術圖，以及存放至回放用的資料庫存放。"
+          );
           break;
         case "資料前處理":
           $("#fieldinfo").attr("src", imagePath + "labelimg.png");
           $("#fieldinfo").css({
             width: "1600px",
-            height: "800px" 
+            height: "800px",
           });
           $("#text_title h1").html("Labelimg前處理");
-          $("#text_title p").html("首先前處理部分，我們使用labelimg進行圖片標記，因我們最初需要先進行切割場內以及場外人員的區分，因此我們以圖內的場地線為界進行分區。<br>以左方圖片為例，我們利用射線法，以場地邊線為界切割場地內部，在線之外的人員為場外，反之為場內，區分出人員所在之場內外。"
+          $("#text_title p").html(
+            "首先前處理部分，我們使用labelimg進行圖片標記，因我們最初需要先進行切割場內以及場外人員的區分，因此我們以圖內的場地線為界進行分區。<br>以左方圖片為例，我們利用射線法，以場地邊線為界切割場地內部，在線之外的人員為場外，反之為場內，區分出人員所在之場內外。"
           );
           break;
-          case "辨識相關技術":
+        case "辨識相關技術":
           $("#fieldinfo").attr("src", imagePath + "detimage.png");
           $("#fieldinfo").css({
             width: "1400px",
-            height: "1000px" 
+            height: "1000px",
           });
-          $("#text_title h1").html("AI辨識使用之相關技術");
-          $("#text_title p").html("使用Yolov7的模型來進行訓練，並作為之後辨識位置、背號以及持球狀態依據。<br>左方為其中一個攝影機之辨識影像截圖，可看到利用AI辨識之人員分布。"
+          $("#text_title h1").html("AI辨識相關技術");
+          $("#text_title p").html(
+            "我們選用Yolov7的模型來進行訓練，並需要模型提供辨識位置、背號以及持球狀態等結果作為輸出。<br>左方為其中一個攝影機之辨識影像截圖，可看到利用AI辨識之人員分布。"
           );
           break;
-          case "前端呈現成果":
-          $("#fieldinfo").attr("src", imagePath + "field_03.png");
-          $("#text_title h1").html("前端呈現");
-          $("#text_title p").html("目前呈現方式為利用flask架設網頁，接收來自Yolov7所辨識之球員位置資料，將其呈現在網頁上的同時，將其記錄至資料庫，以便做回放之用。"
+        case "前端呈現成果":
+          $("#fieldinfo").attr("src", imagePath + "frameweb.png");
+          $("#fieldinfo").css({
+            width: "1800px",
+            height: "900px",
+          });
+          $("#text_title h1").html("前端流程介紹");
+          $("#text_title p").html(
+            "①客戶端發起請求<br>②Web Server向Application Server請求需要調整的所有資訊，包含URL、圖片在網頁上的位置、文字顯示狀態等。<br>③Application Server無法提供的資料，進一步向python程式請求讀取。<br>④python程式將資料包裝為Json後，傳回Application Server<br>⑤Application Server整理好更改內容以後回傳給Web Server<br>⑥最後回應給Browser作呈現。"
           );
           break;
       }
