@@ -11,6 +11,13 @@ def demo(x):
     for i in range(10):
         number.append(i+1)
 
+    if f >107 and f <158:
+        has_ball[9] = 1
+    elif f > 180 and f <271:
+        has_ball[3] = 1
+    else:
+        for i in range(10):
+            has_ball[i] = 0
 
     with open(file_x, 'r') as file:
         line = file.readlines()

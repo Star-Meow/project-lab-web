@@ -13,6 +13,18 @@ body {
     background: #2d232e;
 }
 
+.main_c {
+    display: flex;
+    flex-flow: column nowrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 1100x;
+    width: 1960px;
+    margin: auto;
+    padding: 50px;
+    align-items: center;
+}
+
 .abu_container {
     display: flex;
     justify-content: space-around;
@@ -20,19 +32,23 @@ body {
     align-items: center;
     height: 1100px;
     width: 1960px;
-    padding: 100px;
+    padding: 50px;
 }
 
 .adu_item {
     width: 500px;
-    margin: 15px 100px;
+    margin: 15px 50px;
     text-align: center;
     background: #f1f0ea;
     border: 1px solid #534b52;
 }
 
 .adu_item img {
-    width: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column-reverse;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .adu_item h2 {
