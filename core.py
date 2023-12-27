@@ -50,7 +50,7 @@ def data():
 def data2():
     global frame_counter
     frame_counter += 1
-    if frame_counter > 80:
+    if frame_counter > 294:
         frame_counter = 0
     data = demo(frame_counter)
     ans = {'number': data[0], "has_ball": data[1], "x_coor": data[2],

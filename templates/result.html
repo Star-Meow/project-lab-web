@@ -84,11 +84,14 @@
                             players.push(player);
                         }
                         players = jack(players);
-                        for (var i = 1; i < players.length; i++) {
+                        for (var i = 0; i < players.length; i++) {
                             if (players[i].x_coordinate == "0" && players[i].y_coordinate == "0") {
 
                                 var playerImage = document.getElementById("playerImage" + players[i].number);
                                 playerImage.style.display = "none";
+                                console.log(
+                                players[i].frame,    
+                                players[i].number,);
                             } else {
                                 var playerImage = document.getElementById("playerImage" + players[i].number);
                                 playerImage.style.display = "block";
@@ -141,12 +144,12 @@
             var playerImage = document.getElementById(data);
             var imagePath = "/static/image/number" + player.number;
 
-            console.log(
+            /*console.log(
                 player.frame,
                 player.number,
                 player.x_coordinate,
                 player.y_coordinate
-            );
+            );*/
             if (player.has_ball === 1) {
                 imagePath += "_hasball.png";
             } else {
